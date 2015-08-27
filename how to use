@@ -1,0 +1,50 @@
+#SlidingMenu开源项目的使用
+
+
+1.下载SlidingMunu和解压导入到工程里面
+
+下载地址：https://github.com/jfeinstein10/SlidingMenu.git
+         https://github.com/jfeinstein10/SlidingMenu
+
+
+ 什么是库呢？怎么把一个工程变成一个库？
+ 答： 把工程变成jar包；
+ 答：选中要变成库的工程，选中属性，构造变成库。
+
+2.关联工程，并且在Activity中继承SlidingFragmentActivity
+
+3.把onCreate方法的权限修饰符protected 改成public
+
+4.具体代码如下：
+
+ 
+	public class MainActivity extends SlidingFragmentActivity {
+	
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+			//设置主页面
+			setContentView(R.layout.activity_main);
+			
+			//设置左侧菜单
+			setBehindContentView(R.layout.activity_left);
+			
+			SlidingMenu slidingMenu = getSlidingMenu();
+			//设置右侧菜单
+			slidingMenu.setSecondaryMenu(R.layout.activity_right);
+			
+			//设置滑动模式：全屏，便于，不可用滑动
+			slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+			
+			//设置支持的模式：左侧菜单+主页面；左侧菜单+主页面+右侧菜单；主页面+右侧菜单
+			
+			slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
+			
+			
+			//设置主页面占用面积
+			slidingMenu.setBehindOffset(200);
+			
+		}
+	}
+
+//super.onCreate(savedInstanceState); 方法建议都不要注释掉
